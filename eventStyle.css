@@ -1,6 +1,4 @@
-* {
-    box-sizing: border-box;
-  }
+
 
 :root{
     --mainColor: #eaeaea;
@@ -55,7 +53,7 @@ h1,h2,h3,h4,h5,h6, strong{
 }
 
 #checkInName, #checkOutName {
-  background-image: url('/images/searchIcon.png');
+  background-image: url('images/searchIcon.png');
   background-position: 10px 12px;
   background-repeat: no-repeat;
   width: 100%;
