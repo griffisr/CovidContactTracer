@@ -1,0 +1,170 @@
+* {
+    box-sizing: border-box;
+  }
+
+:root{
+    --mainColor: #eaeaea;
+    --secondaryColor: #fff;
+
+    --borderColor: #c1c1c1;
+
+
+    --mainText: black;
+    --secondaryText: #4b5156;
+
+    --themeDotBorder: #24292e;
+
+    --previewBg: rgb(251, 249, 243, 0.8);
+
+    --previewShadow: #f0ead6;
+
+    --buttonColor: #fa982952;
+}
+
+html, body{
+    padding: 0;
+    margin: 0;
+}
+
+h1,h2,h3,h4,h5,h6, strong{
+    color: var(--mainText);
+    font-family: 'Goldman', sans-serif;
+    font-weight: 500;
+}
+
+.main-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.list-column{
+  display: flex;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  width:35%;
+  flex-direction: column;
+  height: 400px;
+}
+.checkOutForm, .checkInForm{
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+#checkInName, #checkOutName {
+  background-image: url('/images/searchIcon.png');
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#checkOutBtn, #checkInBtn{
+    height:min-content;
+    background-color: var(--buttonColor); 
+    border: none;
+    color: white;
+    padding: 10px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+  /* List styles*/
+  #names, #namesInside{
+    width: 80%;
+    height: 200px;
+    overflow: auto;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  #names li a , #namesInside li a{
+    border: 1px solid #ddd;
+    margin-top: -1px; /* Prevent double borders */
+    background-color: #f6f6f6;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    display: block
+  }
+  
+  #names li a:hover:not(.header) {
+    background-color: #eee;
+    cursor: pointer;
+  }
+  
+  #namesInside li a:hover:not(.header) {
+    background-color: #eee;
+    cursor: pointer;
+  }
+
+.middle-column{
+  display: flex;
+  background-color: rgb(255, 255, 255);
+  flex-basis: 25%;
+  width: 25%;
+  height: 400px;
+  flex-direction: column;
+  align-items: center;
+}
+.filePicker{
+  display: flex;
+  flex-direction: row;
+  width:min-content;
+  padding-left: 120px;
+}
+
+
+
+.main-container2{
+  display: flex;
+  width: 100%;
+  background-color: coral;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 300px;
+}
+.left-tester{
+  display: flex;
+   
+}
+
+.right-tester{
+  display: flex;
+  flex-direction: column;
+    
+}
+
+.counterLabel {
+    color: #ffffff;
+  
+  }
+
+
+@media screen and (max-width: 1200px){
+    .main-container2{
+        width: 95%
+    }
+}
+
+@media screen and (max-width: 800px){
+    .s1{
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            'left-column'
+            'middle-column'
+            'right-column'
+        ;
+    }}

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Covid Contact Tracer</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="mainStyle.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {font-family: "Lato", sans-serif}
+.mySlides {display: none}
+</style>
+<body>
+
+<!-- Navbar -->
+<div class="top">
+    <div class=nav-wrapper>
+    <a class="bar-item button padding-large hide-medium hide-large right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="index.html" class="bar-item button padding-large">HOME</a>
+    <a href="myEvents.html" class="bar-item button padding-large hide-small">MY EVENTS</a>
+    <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;" class= "bar-item button padding-large">LOGIN</button>
+    <a href="" class="padding-large hover-red hide-small right">New Event</a>
+</div>
+</div>
+
+
+<!--Log In Box-->
+<div id="id01" class="modal">
+  
+  <form class="modal-content animate" action="/action_page.php" method="post">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="img_avatar2.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+        
+      <button type="submit">Login</button>
+      <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+      </label>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+      <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+  </form>
+</div>
+
+<!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
+<div id="navDemo" class="bar-block black hide hide-large hide-medium top" style="margin-top:46px">
+  <a href="event.html" class="bar-item button padding-large" onclick="myFunction()">MY EVENTS</a>
+</div>
+
+<!-- Page content -->
+<div class="content" style="max-width:2000px;margin-top:46px">
+
+  <!-- Automatic Slideshow Images -->
+  <div class="mySlides display-container center">
+    <img src="/images/peopleWithNet.jpg" style="width:100%">
+    <div class="display-bottommiddle container text-white padding-32 hide-small">
+      <h3>Los Angeles</h3>
+      <p><b>We had the best time playing at Venice Beach!</b></p>
+    </div>
+  </div>
+  <div class="mySlides display-container center">
+    <img src="/images/contactWorks.png" style="width:100%">
+    <div class="display-bottommiddle container text-white padding-32 hide-small">
+      <h3>New York</h3>
+      <p><b>The atmosphere in New York is lorem ipsum.</b></p>
+    </div>
+  </div>
+  <div class="mySlides display-container center">
+    <img src="/images/stopSpread.jpg" style="width:100%">
+    <div class="display-bottommiddle container text-white padding-32 hide-small">
+      <h3>Chicago</h3>
+      <p><b>Thank you, Chicago - A night we won't forget.</b></p>
+    </div>
+  </div>
+
+  <!-- The Band Section -->
+  <div class="container content center padding-64" style="max-width:800px" id="band">
+    <h2 class="wide">Fighting Covid-19</h2>
+    <p class="opacity"><i>Catch Contact Not Covid</i></p>
+    <p class="justify">What is contact tracing?
+        Contact tracing has been used for decades by state and local health departments to slow or stop the spread of infectious diseases.
+        
+        Contact tracing slows the spread of COVID-19 by
+        
+        Letting people know they may have been exposed to COVID-19 and should monitor their health for signs and symptoms of COVID-19
+        Helping people who may have been exposed to COVID-19 get tested
+        Asking people to self-isolate if they have COVID-19 or self-quarantine if they are a close contact of someone with COVID-19</p>
+    <div class="row padding-32">
+      <div class="third">
+        <p>Name</p>
+        <img src="/w3images/bandmember.jpg" class="round margin-bottom" alt="Random Name" style="width:60%">
+      </div>
+      <div class="third">
+        <p>Name</p>
+        <img src="/w3images/bandmember.jpg" class="round margin-bottom" alt="Random Name" style="width:60%">
+      </div>
+      <div class="third">
+        <p>Name</p>
+        <img src="/w3images/bandmember.jpg" class="round" alt="Random Name" style="width:60%">
+      </div>
+    </div>
+  </div>
+
+
+  
+
+<!-- End Page Content -->
+</div>
+
+
+<!-- Footer -->
+<footer class="container padding-64 center opacity light-grey xlarge">
+  <i class="fa fa-facebook-official hover-opacity"></i>
+  <i class="fa fa-instagram hover-opacity"></i>
+  <i class="fa fa-snapchat hover-opacity"></i>
+  <i class="fa fa-pinterest-p hover-opacity"></i>
+  <i class="fa fa-twitter hover-opacity"></i>
+  <i class="fa fa-linkedin hover-opacity"></i>
+  <p class="medium">Designed and created by: Riley Griffis</p>
+</footer>
+
+<script>
+// Automatic Slideshow - change image every 4 seconds
+var myIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}
+  x[myIndex-1].style.display = "block";
+  setTimeout(carousel, 4000);
+}
+
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("show") == -1) {
+    x.className += " show";
+  } else {
+    x.className = x.className.replace(" show", "");
+  }
+}
+
+// When the user clicks anywhere outside of the modal, close it
+var modal = document.getElementById('ticketModal');
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+<script>
+    // Get the modal
+    var modal = document.getElementById('id01');
+    
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Name</title>
+
+    <!--Import Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!--Firebase Libraries-->
+    <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-database.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Import Google Fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Goldman&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="eventStyle.css">
+    <link rel="stylesheet" type="text/css" href="mainStyle.css">
+
+    
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="top">
+        <div class="nav-wrapper">
+        <a class="bar-item button padding-large hide-medium hide-large right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+        <a href="index.html" class="bar-item button padding-large">HOME</a>
+        <a href="event.html" class="bar-item button padding-large hide-small">MY EVENTS</a>
+        <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;" class= "bar-item button padding-large">LOGIN</button>
+        <a href="" class="padding-large hover-red hide-small right">New Event</a>
+        </div>
+    </div>
+
+    <!--Log In Box-->
+    <div id="id01" class="modal">
+    
+        <form class="modal-content animate" action="/action_page.php" method="post">
+        <div class="imgcontainer">
+            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <img src="img_avatar2.png" alt="Avatar" class="avatar">
+        </div>
+    
+        <div class="container">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" required>
+    
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+            
+            <button type="submit">Login</button>
+            <label>
+            <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
+        </div>
+    
+        <div class="container" style="background-color:#f1f1f1">
+            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+            <span class="psw">Forgot <a href="#">password?</a></span>
+        </div>
+        </form>
+    </div>
+  
+  <!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
+  <div id="navDemo" class="bar-block black hide hide-large hide-medium top" style="margin-top:46px">
+    <a href="event.html" class="bar-item button padding-large" onclick="myFunction()">MY EVENTS</a>
+  </div>
+    
+  <!--Page Content-->
+  <div class="content" style="max-width:2000px;margin-top:46px">
+        <div class="main-container">
+            <div class="list-column">
+
+                <!--Check In Label-->
+                <div class="checkInLabel">
+                    <h2 class="wide">Check In</h2>
+                </div>
+
+                <!--Form for adding-->
+                <div class="checkInForm">
+                    <input id="checkInBtn" type="submit" value="Check In" onClick="">
+                    <input type="text" id="checkInName" onkeyup="checkInList()" placeholder="Search for names.." title="Type in a name">
+                </div>
+                <ul id="names">
+                </ul>
+            </div>
+
+            <div class = "middle-column">
+                <!--File input to upload list-->
+                <img src="images/rona.png" alt="Check In" width="235" height="235" id="ronaPic">
+                <div class = "filePicker">
+                    <input type="file" name="inputfile" id="inputfile"></input>
+                </div>
+            </div>
+
+            <div class="list-column">
+
+                <!--Check Out Label -->
+                <div class="checkOutLabel">
+                    <h2 class="wide">Check Out</h2> 
+                </div>
+    
+                <!--Form for removing-->
+                <div class="checkOutForm">
+                    <input id= "checkOutBtn" type="submit" value="Check Out" onClick="getList( )" >
+                    <input type="text" id="checkOutName" onkeyup="insideList()" placeholder="Search for names.." title="Type in a name">
+                    
+                </div>
+                <ul id="namesInside">
+                </ul>
+
+            </div>
+
+    </section>
+
+
+    <!-- <section class="s2">
+        <div class="main-container2">
+                <div class="left-tester">
+                    <h3>CDC Risk Level</h3>
+                </div>
+
+                <div class="right-tester">
+                    <h3>Current Occupancy</h3>
+                    Counter Label
+                    <div class="counterLabelHolder" id="result">
+                        <h1 class="counterLabel">100</h1>
+                    </div>
+
+                    Counter Button
+                    <div class="counterButton">
+                    <p><button onclick="clickCounter()" type="button">Filler to add "In Party" Count</button></p>
+                    
+
+                </div>
+
+        </div>
+    </section>-->
+        </div>
+    
+    <script>
+        // Automatic Slideshow - change image every 4 seconds
+        var myIndex = 0;
+        carousel();
+        
+        function carousel() {
+          var i;
+          var x = document.getElementsByClassName("mySlides");
+          for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+          }
+          myIndex++;
+          if (myIndex > x.length) {myIndex = 1}
+          x[myIndex-1].style.display = "block";
+          setTimeout(carousel, 4000);
+        }
+        
+        // Used to toggle the menu on small screens when clicking on the menu button
+        function myFunction() {
+          var x = document.getElementById("navDemo");
+          if (x.className.indexOf("show") == -1) {
+            x.className += " show";
+          } else {
+            x.className = x.className.replace(" show", "");
+          }
+        }
+        
+        // When the user clicks anywhere outside of the modal, close it
+        var modal = document.getElementById('ticketModal');
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+        </script>
+
+        <script>
+            // Get the modal
+            var modal = document.getElementById('id01');
+            
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+            </script>
+
+
+    <script type="text/javascript" src="eventScript.js"></script>
+
+</body>
+</html>
