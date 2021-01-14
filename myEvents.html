@@ -3,6 +3,25 @@
 <title>Covid Contact Tracer</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--Initialize Firebase-->
+<script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
+<script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyCKnIn4SsMC74rTGqekjSw8OvLwWe88bbI",
+        authDomain: "party-smart-tcod.firebaseapp.com",
+        databaseURL: "https://party-smart-tcod.firebaseio.com",
+        projectId: "party-smart-tcod",
+        storageBucket: "party-smart-tcod.appspot.com",
+        messagingSenderId: "332152048668",
+        appId: "1:332152048668:web:9adf5fb209d803b8d4e3d9"
+    };
+    firebase.initializeApp(firebaseConfig);
+</script>
+
+
 <link rel="stylesheet" type="text/css" href="mainStyle.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -24,34 +43,21 @@ body {font-family: "Lato", sans-serif}
 </div>
 
 
-<!--Log In Box-->
-<div id="id01" class="modal">
+    <!--Log In Box-->
+    <div id="id01" class="modal">
   
-  <form class="modal-content animate" action="/action_page.php" method="post">
-    <div class="imgcontainer">
-      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-      <img src="img_avatar2.png" alt="Avatar" class="avatar">
+      <form class="modal-content animate" action="/action_page.php" method="post">
+        <div class="imgcontainer">
+          <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+          <img src="/CovidContactTracer/images/img_avatar2.png" alt="Avatar" class="avatar">
+        </div>
+    
+        <div class="container">
+          <div id="firebaseui-auth-container"></div>
+          <br>
+        </div>
+      </form>
     </div>
-
-    <div class="container">
-      <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
-
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
-        
-      <button type="submit">Login</button>
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label>
-    </div>
-
-    <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-      <span class="psw">Forgot <a href="#">password?</a></span>
-    </div>
-  </form>
-</div>
 
 <!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
 <div id="navDemo" class="bar-block black hide hide-large hide-medium top" style="margin-top:46px">
@@ -62,15 +68,8 @@ body {font-family: "Lato", sans-serif}
 <div class="content" style="max-width:2000px;margin-top:46px">
 
 
-
-
 <!-- End Page Content -->
 </div>
-
-
-
-
-
 
 
 
@@ -89,6 +88,7 @@ body {font-family: "Lato", sans-serif}
 </footer>
 
 
+</body>
 
 <script>
 // Used to toggle the menu on small screens when clicking on the menu button
@@ -121,6 +121,34 @@ window.onclick = function(event) {
         }
     }
 </script>
+<script type="text/javascript" src="/CovidContactTracer/myEvents.js"></script>
+<script type="text/javascript" src="/CovidContactTracer/mainScript.js"></script>
 
-</body>
+
+<!-- *********************************Firebase User Auth********************************************************** -->
+<script src="https://www.gstatic.com/firebasejs/ui/4.7.1/firebase-ui-auth.js"></script>
+<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.7.1/firebase-ui-auth.css" />
+<script type="text/javascript">
+  // FirebaseUI config.
+  var uiConfig = {
+    signInSuccessUrl: "myEvents.html",
+    signInOptions: [
+      // Leave the lines as is for the providers you want to offer your users.
+      firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    ],
+    // tosUrl and privacyPolicyUrl accept either url string or a callback
+    // function.
+    // Terms of service url/callback.
+    tosUrl: '<your-tos-url>',
+    // Privacy policy url/callback.
+    privacyPolicyUrl: function() {
+      window.location.assign('<your-privacy-policy-url>');
+    }
+  };
+
+  // Initialize the FirebaseUI Widget using Firebase.
+  var ui = new firebaseui.auth.AuthUI(firebase.auth());
+  // The start method will wait until the DOM is loaded.
+  ui.start('#firebaseui-auth-container', uiConfig);
+</script>
 </html>
