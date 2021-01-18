@@ -13,6 +13,19 @@ const firebaseConfig = {
 
 
 
+if(localStorage.getItem('eventName') == null || localStorage.getItem('eventName')==""){
+  eventName = prompt("Please enter a name for your event:", "My Event")
+  if(eventName == null || eventName == "")
+  {
+    alert("Please enter and event name!")
+  }
+  else
+  {
+    localStorage.setItem('eventName', eventName);
+  }
+  
+
+}
 
 //-------------------- User Uploaded List -------------------------
 
@@ -37,15 +50,27 @@ document.getElementById('inputfile') .addEventListener('change', function loadFi
 //Helper function to turn the guest list into an array of objects to assign data to 
 function strToObject()
 {
-  for (var i = 0; i < names.length; i++)
+  eventName = prompt("Please enter a name for your event:", "My Event")
+  if(eventName == null || eventName == "")
   {
-    firebase.database().ref('guestList/' + names[i]).set({
-      name: names[i],
-      Inside: "No",
-      TimeIn: "n/a",
-      TimeOut: "n/a",
-    })
+    alert("Please enter and event name!")
   }
+  else{
+    for (var i = 0; i < names.length; i++)
+    {
+      firebase.database().ref("events/" + eventName+ '/guestList/' + names[i]).set({
+        name: names[i],
+        Inside: "No",
+        TimeIn: "n/a",
+        TimeOut: "n/a",
+      })
+    }
+    
+    localStorage.setItem('eventName', eventName);
+    document.title = eventName;
+
+  }
+  
 }
 
 //Counter
@@ -68,15 +93,16 @@ function setTextIn(name){
 }
 
 document.getElementById("checkInBtn").onclick = function(){
+  eventName = localStorage.getItem('eventName');
   var nameg = document.getElementById("checkInName").value;
   if(nameg==null){
     alert("Please Enter a guest name!")
   }
-  firebase.database().ref("guestList/"+nameg).once('value', function(snapshot){
+  firebase.database().ref("events/" + eventName + "/guestList/"+nameg).once('value', function(snapshot){
     //Creates a new guest if they aren't on the list uploaded by the user
     if(snapshot.val() == "")
     {
-      firebase.database().ref("guestList/"+nameg).set({
+      firebase.database().ref("events/" + eventName + "/guestList/"+nameg).set({
         name: nameg,
         Inside: "No",
         TimeIn: "n/a",
@@ -84,12 +110,12 @@ document.getElementById("checkInBtn").onclick = function(){
       })
 
       //Checking people back in that have already been inside
-      firebase.database().ref("guestList/"+nameg).once('value', function(snapshot){
+      firebase.database().ref("events/" + eventName + "/guestList/"+nameg).once('value', function(snapshot){
         if(snapshot.val().Inside != "Yes")
       {
         if(snapshot.val().TimeIn != "n/a" && snapshot.val().TimeOut !="n/a")
         {
-          firebase.database().ref("guestList/"+nameg).update({
+          firebase.database().ref("events/" + eventName + "/guestList/"+nameg).update({
             Inside: "Yes",
             TimeBackIn: getTime(),
             TimeBackOut: "n/a",
@@ -97,7 +123,7 @@ document.getElementById("checkInBtn").onclick = function(){
         }
         else
         {
-          firebase.database().ref("guestList/"+nameg).update({
+          firebase.database().ref("events/" + eventName + "/guestList/"+nameg).update({
           Inside: "Yes",
           TimeIn: getTime(),})
         }   
@@ -112,7 +138,7 @@ document.getElementById("checkInBtn").onclick = function(){
       {
         if(snapshot.val().TimeIn != "n/a" && snapshot.val().TimeOut !="n/a")
         {
-          firebase.database().ref("guestList/"+nameg).update({
+          firebase.database().ref("events/" + eventName + "/guestList/"+nameg).update({
             Inside: "Yes",
             TimeBackIn: getTime(),
             TimeBackOut: "n/a",
@@ -120,7 +146,7 @@ document.getElementById("checkInBtn").onclick = function(){
         }
         else
         {
-          firebase.database().ref("guestList/"+nameg).update({
+          firebase.database().ref("events/" + eventName + "/guestList/"+nameg).update({
           Inside: "Yes",
           TimeIn: getTime(),})
         }   
@@ -138,20 +164,21 @@ function setTextOut(name){
 }
 
 document.getElementById("checkOutBtn").onclick = function(){
+  eventName = localStorage.getItem('eventName');
   var namel = document.getElementById("checkOutName").value;
-  firebase.database().ref("guestList/"+namel).once('value', function(snapshot){
+  firebase.database().ref("events/" + eventName + "/guestList/"+namel).once('value', function(snapshot){
     if(snapshot.val().Inside != "No")
     {
       if(snapshot.val().TimeIn != "n/a" && snapshot.val().TimeOut !="n/a")
         {
-          firebase.database().ref("guestList/"+namel).update({
+          firebase.database().ref("events/" + eventName + "/guestList/"+namel).update({
             Inside: "No",
             TimeBackOut: getTime(),
           })
         }
         else
         {
-          firebase.database().ref("guestList/"+namel).update({
+          firebase.database().ref("events/" + eventName + "/guestList/"+namel).update({
           Inside: "No",
           TimeOut: getTime(),})
         }
@@ -192,15 +219,16 @@ document.getElementById("checkOutBtn").onclick = function(){
 }
 
 
-
-
 //------------------------------------------- UI List Funtions -------------------------------------
 
 //Actively read data from firebase to print to UI
-var ref = database.ref("guestList/")
+eventName = localStorage.getItem('eventName');
+document.title = eventName;
+var ref = database.ref("events/" + eventName + "/guestList/")
 ref.on('value', gotData, errData)
 
 function gotData(data){
+  eventName = localStorage.getItem('eventName');
   //Momentarily clears both UI lists so items can be added w/o duplicates
   document.getElementById("names").innerHTML = "";
   document.getElementById("namesInside").innerHTML = "";
@@ -284,4 +312,7 @@ function insideList() {
       }
   }
 }
+
+
+
 

@@ -8,18 +8,6 @@
 <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-database.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
-<script>
-    const firebaseConfig = {
-        apiKey: "AIzaSyCKnIn4SsMC74rTGqekjSw8OvLwWe88bbI",
-        authDomain: "party-smart-tcod.firebaseapp.com",
-        databaseURL: "https://party-smart-tcod.firebaseio.com",
-        projectId: "party-smart-tcod",
-        storageBucket: "party-smart-tcod.appspot.com",
-        messagingSenderId: "332152048668",
-        appId: "1:332152048668:web:9adf5fb209d803b8d4e3d9"
-    };
-    firebase.initializeApp(firebaseConfig);
-</script>
 
 
 <link rel="stylesheet" type="text/css" href="mainStyle.css">
@@ -69,13 +57,18 @@ body {font-family: "Lato", sans-serif}
 <div class="content" style="max-width:2000px;margin-top:46px">
 
 
+
+  <div class="container content center padding-64" style="width: 100%" id="eventList">
+    <br><br><br><br><br>
+    <h3>buttons for deleting and adding</h3>
+    <br><br>
+    <ul id="events" style="height: 500px">
+    </ul><br><br>
+  
+  </div>
 <!-- End Page Content -->
 </div>
-<div id = "list-wrapper">
-  <ol id=events>
-    <li>one event</li>
-  </ol>
-</div>
+
 
 
 
@@ -134,7 +127,6 @@ window.onclick = function(event) {
     }
 </script>
 <script type="text/javascript" src="/CovidContactTracer/myEvents.js"></script>
-<script type="text/javascript" src="/CovidContactTracer/mainScript.js"></script>
 
 
 <!-- *********************************Firebase User Auth********************************************************** -->

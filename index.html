@@ -11,18 +11,7 @@
 <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-database.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
-<script>
-    const firebaseConfig = {
-        apiKey: "AIzaSyCKnIn4SsMC74rTGqekjSw8OvLwWe88bbI",
-        authDomain: "party-smart-tcod.firebaseapp.com",
-        databaseURL: "https://party-smart-tcod.firebaseio.com",
-        projectId: "party-smart-tcod",
-        storageBucket: "party-smart-tcod.appspot.com",
-        messagingSenderId: "332152048668",
-        appId: "1:332152048668:web:9adf5fb209d803b8d4e3d9"
-    };
-    firebase.initializeApp(firebaseConfig);
-</script>
+
 
 <style>
 body {font-family: "Lato", sans-serif}
@@ -37,7 +26,7 @@ body {font-family: "Lato", sans-serif}
     <a href="index.html" class="bar-item button padding-large">HOME</a>
     <a href="myEvents.html" class="bar-item button padding-large hide-small">MY EVENTS</a>
     <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;" class= "bar-item button padding-large">LOGIN</button>
-    <a href="" class="padding-large hover-red hide-small right">New Event</a>
+    <a href="event.html" class="padding-large hover-red hide-small right" onclick="newEvent()">New Event</a>
 </div>
 </div>
 
@@ -48,13 +37,14 @@ body {font-family: "Lato", sans-serif}
   <form class="modal-content animate" >
     <div class="imgcontainer">
       <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-      <img src="/CovidContactTracer/images/img_avatar2.png" alt="Avatar" class="avatar">
+      <img src="images/img_avatar2.png" alt="Avatar" class="avatar">
     </div>
       <div id="firebaseui-auth-container"></div>
     <br>
   </form>
 </div>
 
+<!--Hamburger Nav Bar Menu-->
 <!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
 <div id="navDemo" class="bar-block black hide hide-large hide-medium top" style="margin-top:46px">
   <a href="event.html" class="bar-item button padding-large" onclick="myFunction()">MY EVENTS</a>
@@ -65,54 +55,40 @@ body {font-family: "Lato", sans-serif}
 
   <!-- Automatic Slideshow Images -->
   <div class="mySlides display-container center">
-    <img src="/CovidContactTracer/images/peopleWithNet.jpg" style="width:100%">
-    <div class="display-bottommiddle container text-white padding-32 hide-small">
-    </div>
+    <img src="images/peopleWithNet.jpg" style="width:100%">
   </div>
-  <div class="mySlides display-container center">
-    <img src="/CovidContactTracer/images/contactWorks.png" style="width:100%">
-    <div class="display-bottommiddle container text-white padding-32 hide-small">
-    </div>
-  </div>
-  <div class="mySlides display-container center">
-    <img src="/CovidContactTracer/images/stopSpread.jpg" style="width:100%">
-    <div class="display-bottommiddle container text-white padding-32 hide-small">
-    </div>
-  </div>
+
 
   <!-- Our Mission Section -->
   <div class="container content center padding-64" style="max-width:800px" id="band">
     <h2 class="wide">Fighting Covid-19</h2>
     <p class="opacity"><i>Catch Contact Not Covid</i></p>
     <p class="justify">What is contact tracing?
-        Contact tracing has been used for decades by state and local health departments to slow or stop the spread of infectious diseases.
-        
-        Contact tracing slows the spread of COVID-19 by
-        
-        Letting people know they may have been exposed to COVID-19 and should monitor their health for signs and symptoms of COVID-19
-        Helping people who may have been exposed to COVID-19 get tested
-        Asking people to self-isolate if they have COVID-19 or self-quarantine if they are a close contact of someone with COVID-19</p>
+        Contact tracing has been used for decades by state and local health departments to slow or stop the spread of infectious diseases.<br></p>
+
     <div class="row padding-32">
+      <h4>Contact tracing slows the spread of COVID-19 by:</h4>
       <div class="third">
-        <p>Name</p>
-        <img src="/w3images/bandmember.jpg" class="round margin-bottom" alt="Random Name" style="width:60%">
+        <img src="images/stayHome.jpg" class="round margin-bottom" alt="Random Name" style="width:60%">
+        <p style="font-size:medium;">Letting people know they may have been exposed to COVID-19 and should monitor their health for signs and symptoms of COVID-19</p>
       </div>
       <div class="third">
-        <p>Name</p>
-        <img src="/w3images/bandmember.jpg" class="round margin-bottom" alt="Random Name" style="width:60%">
+        <img src="images/covidMouthTest.jpg" class="round margin-bottom" alt="Random Name" style="width:60%">
+        <p style="font-size:medium;">Helping people who may have been exposed to COVID-19 get tested</p>
       </div>
       <div class="third">
-        <p>Name</p>
-        <img src="/w3images/bandmember.jpg" class="round" alt="Random Name" style="width:60%">
+        <img src="images/stayHome.jpg" class="round margin-bottom" alt="Random Name" style="width:60%">
+        <p style="font-size:medium;"> Asking people to self-isolate if they have COVID-19 or self-quarantine if they are a close contact of someone with COVID-19</p>
       </div>
     </div>
   </div>
 
 
-  
+ 
 
 <!-- End Page Content -->
 </div>
+
 
 
 <!-- Footer -->
@@ -131,7 +107,7 @@ body {font-family: "Lato", sans-serif}
 
 
 
-<script type="text/javascript" src="/CovidContactTracer/mainScript.js"></script>
+<script type="text/javascript" src="mainScript.js"></script>
 <script>
 // Automatic Slideshow - change image every 4 seconds
 var myIndex = 0;
