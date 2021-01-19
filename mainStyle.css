@@ -25,6 +25,7 @@ legend{color:inherit;display:table;max-width:100%;padding:0;white-space:normal}t
 
 /*LOG IN BTN*/
 
+
   /* Extra styles for the cancel button */
   .cancelbtn {
     width: auto;
@@ -223,6 +224,8 @@ img{vertical-align:middle}a{color:inherit}
     float:left}
 .bar .button{white-space:normal}
 .bar-block .bar-item{
+    background-color: rgb(136, 139, 233);
+    color:black;
     width:100%;
     display:block;
     padding:8px 16px;

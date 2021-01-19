@@ -36,7 +36,7 @@
     </div>
 
     <!--Log In Box-->
-<div id="id01" class="modal">
+    <div id="id01" class="modal">
   
     <form class="modal-content animate" action="/action_page.php" method="post">
       <div class="imgcontainer">
@@ -51,6 +51,7 @@
     </form>
   </div>
   
+ <!--Hamburger Nav Bar Menu-->
   <!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
   <div id="navDemo" class="bar-block black hide hide-large hide-medium top" style="margin-top:46px">
     <a href="event.html" class="bar-item button padding-large" onclick="myFunction()">MY EVENTS</a>
@@ -103,12 +104,18 @@
 
     </section>
 
-
-   
 </body>
-    
 
         <script>
+          // Used to toggle the menu on small screens when clicking on the menu button
+          function myFunction() {
+            var x = document.getElementById("navDemo");
+            if (x.className.indexOf("show") == -1) {
+              x.className += " show";
+            } else {
+              x.className = x.className.replace(" show", "");
+            }
+          }
             // Get the modal
             var modal = document.getElementById('id01');
             
