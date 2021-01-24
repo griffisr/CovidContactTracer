@@ -15,7 +15,6 @@ const firebaseConfig = {
   //Gets data for currently logged in user
   firebase.auth().onAuthStateChanged(function(user){
     if(user){
-        console.log(user.uid)
         eventName = localStorage.getItem('eventName');
         var ref = firebase.database().ref("users/" + user.uid + "/events/")
         ref.on('value', gotData, errData)
