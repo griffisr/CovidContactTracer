@@ -14,7 +14,7 @@ const firebaseConfig = {
 
 firebase.auth().onAuthStateChanged(function(user){
     if(user){
-        console.log(user.uid)
+        console.log("logged in")
     }
 });
 
