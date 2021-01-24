@@ -13,9 +13,9 @@ const firebaseConfig = {
 
 
 
-if(localStorage.getItem('eventName') == null || localStorage.getItem('eventName')==""){
+if(localStorage.getItem('eventName') === null || localStorage.getItem('eventName')===""){
   eventName = prompt("Please enter a name for your event:", "My Event")
-  if(eventName == null || eventName == "")
+  if(eventName === null || eventName === "")
   {
     alert("Please enter and event name!")
   }
@@ -23,7 +23,6 @@ if(localStorage.getItem('eventName') == null || localStorage.getItem('eventName'
   {
     localStorage.setItem('eventName', eventName);
   }
-  
 
 }
 
@@ -58,7 +57,7 @@ function strToObject()
   else{
     for (var i = 0; i < names.length; i++)
     {
-      firebase.database().ref("events/" + eventName+ '/guestList/' + names[i]).set({
+      firebase.database().ref("users/"+ localStorage.getItem('userUID') + "/events/" + eventName+ '/guestList/' + names[i]).set({
         name: names[i],
         Inside: "No",
         TimeIn: "n/a",
@@ -93,16 +92,17 @@ function setTextIn(name){
 }
 
 document.getElementById("checkInBtn").onclick = function(){
+  userUID = localStorage.getItem('userUID');
   eventName = localStorage.getItem('eventName');
   var nameg = document.getElementById("checkInName").value;
   if(nameg==null){
     alert("Please Enter a guest name!")
   }
-  firebase.database().ref("events/" + eventName + "/guestList/"+nameg).once('value', function(snapshot){
+  firebase.database().ref("users/" + localStorage.getItem('userUID') + "/events/" + eventName + "/guestList/"+nameg).once('value', function(snapshot){
     //Creates a new guest if they aren't on the list uploaded by the user
     if(snapshot.val() == "")
     {
-      firebase.database().ref("events/" + eventName + "/guestList/"+nameg).set({
+      firebase.database().ref("users/" + localStorage.getItem('userUID') + "/events/" + eventName + "/guestList/"+nameg).set({
         name: nameg,
         Inside: "No",
         TimeIn: "n/a",
@@ -110,12 +110,12 @@ document.getElementById("checkInBtn").onclick = function(){
       })
 
       //Checking people back in that have already been inside
-      firebase.database().ref("events/" + eventName + "/guestList/"+nameg).once('value', function(snapshot){
+      firebase.database().ref("users/" + localStorage.getItem('userUID') + "/events/" + eventName + "/guestList/"+nameg).once('value', function(snapshot){
         if(snapshot.val().Inside != "Yes")
       {
         if(snapshot.val().TimeIn != "n/a" && snapshot.val().TimeOut !="n/a")
         {
-          firebase.database().ref("events/" + eventName + "/guestList/"+nameg).update({
+          firebase.database().ref("users/" + localStorage.getItem('userUID') + "/events/" + eventName + "/guestList/"+nameg).update({
             Inside: "Yes",
             TimeBackIn: getTime(),
             TimeBackOut: "n/a",
@@ -123,7 +123,7 @@ document.getElementById("checkInBtn").onclick = function(){
         }
         else
         {
-          firebase.database().ref("events/" + eventName + "/guestList/"+nameg).update({
+          firebase.database().ref("users/" + localStorage.getItem('userUID') + "/events/" + eventName + "/guestList/"+nameg).update({
           Inside: "Yes",
           TimeIn: getTime(),})
         }   
@@ -138,7 +138,7 @@ document.getElementById("checkInBtn").onclick = function(){
       {
         if(snapshot.val().TimeIn != "n/a" && snapshot.val().TimeOut !="n/a")
         {
-          firebase.database().ref("events/" + eventName + "/guestList/"+nameg).update({
+          firebase.database().ref("users/" + localStorage.getItem('userUID') + "/events/" + eventName + "/guestList/"+nameg).update({
             Inside: "Yes",
             TimeBackIn: getTime(),
             TimeBackOut: "n/a",
@@ -146,7 +146,7 @@ document.getElementById("checkInBtn").onclick = function(){
         }
         else
         {
-          firebase.database().ref("events/" + eventName + "/guestList/"+nameg).update({
+          firebase.database().ref("users/" + localStorage.getItem('userUID') + "/events/" + eventName + "/guestList/"+nameg).update({
           Inside: "Yes",
           TimeIn: getTime(),})
         }   
@@ -164,21 +164,22 @@ function setTextOut(name){
 }
 
 document.getElementById("checkOutBtn").onclick = function(){
+  var user = firebase.auth().currentUser;
   eventName = localStorage.getItem('eventName');
   var namel = document.getElementById("checkOutName").value;
-  firebase.database().ref("events/" + eventName + "/guestList/"+namel).once('value', function(snapshot){
+  firebase.database().ref("users/" + localStorage.getItem('userUID') + "/events/" + eventName + "/guestList/"+namel).once('value', function(snapshot){
     if(snapshot.val().Inside != "No")
     {
       if(snapshot.val().TimeIn != "n/a" && snapshot.val().TimeOut !="n/a")
         {
-          firebase.database().ref("events/" + eventName + "/guestList/"+namel).update({
+          firebase.database().ref("users" + localStorage.getItem('userUID') + "/events/" + eventName + "/guestList/"+namel).update({
             Inside: "No",
             TimeBackOut: getTime(),
           })
         }
         else
         {
-          firebase.database().ref("events/" + eventName + "/guestList/"+namel).update({
+          firebase.database().ref("users" + localStorage.getItem('userUID') + "/events/" + eventName + "/guestList/"+namel).update({
           Inside: "No",
           TimeOut: getTime(),})
         }
@@ -222,10 +223,19 @@ document.getElementById("checkOutBtn").onclick = function(){
 //------------------------------------------- UI List Funtions -------------------------------------
 
 //Actively read data from firebase to print to UI
-eventName = localStorage.getItem('eventName');
-document.title = eventName;
-var ref = database.ref("events/" + eventName + "/guestList/")
-ref.on('value', gotData, errData)
+
+//Gets data for currently logged in user
+firebase.auth().onAuthStateChanged(function(user){
+  if(user){
+    localStorage.setItem('userUID', user.uid);
+    eventName = localStorage.getItem('eventName');
+    document.title = eventName;
+    ref = database.ref("users/" + user.uid + "/events/" + eventName + "/guestList/")
+    ref.on('value', gotData, errData)
+  }
+});
+
+
 
 function gotData(data){
   eventName = localStorage.getItem('eventName');

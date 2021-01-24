@@ -12,13 +12,21 @@ const firebaseConfig = {
   var database = firebase.database();
 
 
+  //Gets data for currently logged in user
+  firebase.auth().onAuthStateChanged(function(user){
+    if(user){
+        console.log(user.uid)
+        eventName = localStorage.getItem('eventName');
+        var ref = firebase.database().ref("users/" + user.uid + "/events/")
+        ref.on('value', gotData, errData)
+    }
+});
+
 
 //------------------------------------------- UI List Funtions -------------------------------------
 
 //Actively read data from firebase to print to UI
-eventName = localStorage.getItem('eventName');
-var ref = firebase.database().ref("events/")
-ref.on('value', gotData, errData)
+
 
 function gotData(data){
   //Momentarily clears both UI lists so items can be added w/o duplicates
@@ -72,10 +80,3 @@ function errData(err){
         }
     }
 }
-
-
-  firebase.auth().onAuthStateChanged(function(user){
-      if(user){
-          console.log("logged in")
-      }
-  });
