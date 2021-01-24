@@ -172,14 +172,14 @@ document.getElementById("checkOutBtn").onclick = function(){
     {
       if(snapshot.val().TimeIn != "n/a" && snapshot.val().TimeOut !="n/a")
         {
-          firebase.database().ref("users" + localStorage.getItem('userUID') + "/events/" + eventName + "/guestList/"+namel).update({
+          firebase.database().ref("users/" + localStorage.getItem('userUID') + "/events/" + eventName + "/guestList/"+namel).update({
             Inside: "No",
             TimeBackOut: getTime(),
           })
         }
         else
         {
-          firebase.database().ref("users" + localStorage.getItem('userUID') + "/events/" + eventName + "/guestList/"+namel).update({
+          firebase.database().ref("users/" + localStorage.getItem('userUID') + "/events/" + eventName + "/guestList/"+namel).update({
           Inside: "No",
           TimeOut: getTime(),})
         }
