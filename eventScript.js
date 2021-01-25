@@ -13,7 +13,7 @@ const firebaseConfig = {
 
 
 
-if(localStorage.getItem('eventName') === null || localStorage.getItem('eventName')===""){
+if(localStorage.getItem('eventName') === null || localStorage.getItem('eventName')==="" || localStorage.getItem('eventName')==="new"){
   eventName = prompt("Please enter a name for your event:", "My Event")
   if(eventName === null || eventName === "")
   {
@@ -255,21 +255,26 @@ function gotData(data){
     var names = scores[k].name;
     var inside = scores[k].Inside;
 
-    var a =document.createElement("a");
-    var li = document.createElement("li");
+    if(inside == "No"){
+      var a =document.createElement("a");
+      var li = document.createElement("li");
 
-    a.textContent= names;
-    li.appendChild(a);
-    ul.appendChild(li);
-    a.setAttribute('id', names);
-    a.setAttribute('onclick', 'setTextIn(id)');
+      a.textContent= names;
+      li.appendChild(a);
+      ul.appendChild(li);
+      a.setAttribute('id', names);
+      a.setAttribute('onclick', 'setTextIn(id)');
+    }
+    
   }
+  var guestsInside = 0;
   for ( var i=0; i < keys.length; i++){
     var k = keys[i];
     var names = scores[k].name;
     var inside = scores[k].Inside;
 
-    if(inside == "Yes"){
+    if(inside === "Yes"){
+      guestsInside ++; 
       var a = document.createElement("a");
       var li = document.createElement("li")
 
@@ -281,6 +286,7 @@ function gotData(data){
     }
     
   }
+  document.getElementById('currentInside').innerHTML = guestsInside;
 }
 
 function errData(err){

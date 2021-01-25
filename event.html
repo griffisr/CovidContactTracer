@@ -57,52 +57,106 @@
     <a href="event.html" class="bar-item button padding-large" onclick="myFunction()">MY EVENTS</a>
   </div>
     
+
   <!--Page Content-->
-  <div class="content" style="max-width:2000px;margin-top:46px">
-        <div class="main-container">
-            <div class="list-column">
-
-                <!--Check In Label-->
-                <div class="checkInLabel">
-                    <h2 class="wide">Check In</h2>
-                </div>
-
-                <!--Form for adding-->
-                <div class="checkInForm">
-                    <input id="checkInBtn" type="submit" value="Check In" onClick="">
-                    <input type="text" id="checkInName" onkeyup="checkInList()" placeholder="Search for names.." title="Type in a name">
-                </div>
-                <ul id="names">
-                </ul>
-            </div>
-
-            <div class = "middle-column">
-                <!--File input to upload list-->
-                <img src="images/rona.png" alt="Check In" width="235" height="235" id="ronaPic">
-                <div class = "filePicker">
-                    <input type="file" name="inputfile" id="inputfile"></input>
-                </div>
-            </div>
-
-            <div class="list-column">
-
-                <!--Check Out Label -->
-                <div class="checkOutLabel">
-                    <h2 class="wide">Check Out</h2> 
-                </div>
+  <div class="container content center padding-64" style="max-width:1200px" id="band">
+    <div class="row padding-32">
+      <!-------------------------------------Left Side------------------------------>
+      <div class="third" style= "min-width: 45%;">
+        <h3>Guests currently inside: </h3>
+        <h3 id="currentInside">Counter of guest inside goes here</h3>
+        
+      </div>
+      <!--End Left Side -->
+  
+  
+      <!--Spacer for middle-->
+      <div class="third"style= "max-width: 10%;"></div>
+        
+      <!-------------------------------------Right Side------------------------------>
+      <div class="third" style="min-width: 45%;">
+        <h3>CDC Risk level goes here</h3>
+  
+      </div>
+      <!--End Right Side-->
+    </div>
+  </div>
     
-                <!--Form for removing-->
-                <div class="checkOutForm">
-                    <input id= "checkOutBtn" type="submit" value="Check Out" onClick="getList( )" >
-                    <input type="text" id="checkOutName" onkeyup="insideList()" placeholder="Search for names.." title="Type in a name">
-                    
-                </div>
-                <ul id="namesInside">
-                </ul>
+    
+<!-----------------------------------------Bottom Screen Content (Check In and Out)------------------------------------------------->
 
-            </div>
 
-    </section>
+<div class="container content center padding-64" style="max-width:1200px" id="band">
+  <div class="row padding-32">
+    <!-------------------------------------Check In------------------------------>
+    <div class="third" style= "min-width: 45%;">
+      <!--Check In Label-->
+      <div class="checkInLabel">
+        <h2 class="wide">Check In</h2>
+      </div>
+
+      <!--Form for adding-->
+      <div class="checkInForm">
+        <input id="checkInBtn" type="submit" value="Check In" onClick="">
+        <input type="text" id="checkInName" onkeyup="checkInList()" placeholder="Search for names.." title="Type in a name">
+      </div>
+      <!--List of guest on the list but not checked in -->
+      <ul id="names">
+      </ul>
+    </div>
+    <!--End Check-In -->
+
+
+    <!--Spacer for check in and check out-->
+    <div class="third"style= "max-width: 10%;"></div>
+      
+    <!-------------------------------------Check Out------------------------------>
+    <div class="third" style="min-width: 45%;">
+      <!--Check Out Label -->
+      <div class="checkOutLabel">
+        <h2 class="wide">Check Out</h2> 
+      </div>
+
+      <!--Form for removing-->
+      <div class="checkOutForm">
+        <input id= "checkOutBtn" type="submit" value="Check Out" onClick="getList( )" >
+        <input type="text" id="checkOutName" onkeyup="insideList()" placeholder="Search for names.." title="Type in a name"> 
+      </div>
+      <!--List of Guests Inside-->
+      <ul id="namesInside">
+      </ul>
+
+    </div>
+    <!--End Check Out-->
+  </div>
+</div>
+
+
+
+  <div class="content" style="max-width:2000px;margin-top:46px">
+
+    <!--File input to upload list-->
+    <div class = "filePicker">
+      <h3 style="color: azure;">Upload guest list:</h3>
+      <input type="file" name="inputfile" id="inputfile"></input>
+    </div>
+
+  </div>
+  
+
+
+
+
+  <!-- Footer -->
+<footer class="container padding-64 center opacity light-grey xlarge">
+  <i class="fa fa-facebook-official hover-opacity"></i>
+  <i class="fa fa-instagram hover-opacity"></i>
+  <i class="fa fa-snapchat hover-opacity"></i>
+  <i class="fa fa-pinterest-p hover-opacity"></i>
+  <i class="fa fa-twitter hover-opacity"></i>
+  <i class="fa fa-linkedin hover-opacity"></i>
+  <p class="medium">Designed and created by: Riley Griffis</p>
+</footer>
 
 </body>
 

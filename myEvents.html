@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <title>Covid Contact Tracer</title>
@@ -54,18 +55,18 @@ body {font-family: "Lato", sans-serif}
 </div>
 
 <!-- Page content -->
-<div class="content" style="max-width:2000px;margin-top:46px">
-
-
-
-  <div class="container content center padding-64" style="width: 100%" id="eventList">
-    <br><br><br><br><br>
-    <h3>buttons for deleting and adding</h3>
-    <br><br>
-    <ul id="events" style="height: 500px">
-    </ul><br><br>
-  
+<div class="content" style="max-width:3000px;margin-top:46px">
+  <br><br><br><br><br>
+  <div class="formBtn"> 
+    <a class="addbutton" onclick="launchEvent('new')" href="event.html">+ New Event</a>
   </div>
+  
+
+  <ul style="margin-left: 7.5%;" id="events">
+  </ul>
+
+
+  
 <!-- End Page Content -->
 </div>
 
@@ -92,6 +93,9 @@ body {font-family: "Lato", sans-serif}
 
 
 
+
+
+<script type="text/javascript" src="/CovidContactTracer/myEvents.js"></script>
 
 
 
@@ -126,7 +130,6 @@ window.onclick = function(event) {
         }
     }
 </script>
-<script type="text/javascript" src="/CovidContactTracer/myEvents.js"></script>
 
 
 <!-- *********************************Firebase User Auth********************************************************** -->

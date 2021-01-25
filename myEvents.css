@@ -1,11 +1,27 @@
-#eventList{
-  padding-left: 300px;
-  
+.formBtn{
+  padding-right: 7.5%;
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-end;
+  align-content: center;
 }
+.addbutton {
+  background-color: rgb(136, 139, 233);
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.addbutton:hover{color:#000!important;background-color:#ccc!important}
 /* List styles*/
 #events{
-  width: 80%;
-  height: 200px;
+  width: 85%;
+  height: 600px;
   overflow: auto;
   list-style-type: none;
   padding: 0;
@@ -16,7 +32,8 @@
   border: 1px solid #ddd;
   margin-top: -1px; /* Prevent double borders */
   background-color: #f6f6f6;
-  padding: 12px;
+  padding: 25px;
+  text-align: center;
   text-decoration: none;
   font-size: 18px;
   color: black;

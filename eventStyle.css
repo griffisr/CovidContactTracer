@@ -16,7 +16,7 @@
 
     --previewShadow: #f0ead6;
 
-    --buttonColor: #fa982952;
+    --buttonColor: rgb(136, 139, 233);
 }
 
 html, body{
@@ -29,23 +29,15 @@ h1,h2,h3,h4,h5,h6, strong{
     font-family: 'Goldman', sans-serif;
     font-weight: 500;
 }
-
-.main-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-}
-
-.list-column{
+.topData{
   display: flex;
-  align-items: center;
-  background-color: rgb(255, 255, 255);
-  width:35%;
-  flex-direction: column;
-  height: 400px;
+  flex-direction: row;
+  width: 85%;
+  height: 600px;
 }
+
+
+
 .checkOutForm, .checkInForm{
   display: flex;
   flex-direction: row-reverse;
@@ -63,6 +55,32 @@ h1,h2,h3,h4,h5,h6, strong{
   margin-bottom: 12px;
 }
 
+.filePicker{
+    height:min-content;
+    background-color: black; 
+    border: none;
+    color: white;
+    padding: 10px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+#inputfile{
+  height:min-content;
+    background-color: var(--buttonColor); 
+    border: none;
+    color: white;
+    padding: 10px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
 #checkOutBtn, #checkInBtn{
     height:min-content;
     background-color: var(--buttonColor); 
@@ -76,6 +94,8 @@ h1,h2,h3,h4,h5,h6, strong{
     margin: 4px 2px;
     cursor: pointer;
   }
+  #checkOutBtn:hover{color:#000!important;background-color:#ccc!important}
+  #checkInBtn:hover{color:#000!important;background-color:#ccc!important}
 
   /* List styles*/
   #names, #namesInside{
@@ -108,15 +128,7 @@ h1,h2,h3,h4,h5,h6, strong{
     cursor: pointer;
   }
 
-.middle-column{
-  display: flex;
-  background-color: rgb(255, 255, 255);
-  flex-basis: 25%;
-  width: 25%;
-  height: 400px;
-  flex-direction: column;
-  align-items: center;
-}
+
 .filePicker{
   display: flex;
   flex-direction: row;
@@ -126,24 +138,9 @@ h1,h2,h3,h4,h5,h6, strong{
 
 
 
-.main-container2{
-  display: flex;
-  width: 100%;
-  background-color: coral;
-  flex-direction: row;
-  justify-content: space-around;
-  height: 300px;
-}
-.left-tester{
-  display: flex;
-   
-}
 
-.right-tester{
-  display: flex;
-  flex-direction: column;
-    
-}
+
+
 
 .counterLabel {
     color: #ffffff;
@@ -153,18 +150,3 @@ h1,h2,h3,h4,h5,h6, strong{
 
 
 
-@media screen and (max-width: 1200px){
-    .main-container2{
-        width: 95%
-    }
-}
-
-@media screen and (max-width: 800px){
-    .s1{
-        grid-template-columns: 1fr;
-        grid-template-areas: 
-            'left-column'
-            'middle-column'
-            'right-column'
-        ;
-    }}
