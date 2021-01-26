@@ -64,7 +64,7 @@
       <!-------------------------------------Left Side------------------------------>
       <div class="third" style= "min-width: 45%;">
         <h3>Guests currently inside: </h3>
-        <h3 id="currentInside">Counter of guest inside goes here</h3>
+        <h3 id="currentInside"></h3>
         
       </div>
       <!--End Left Side -->
@@ -97,12 +97,19 @@
 
       <!--Form for adding-->
       <div class="checkInForm">
-        <input id="checkInBtn" type="submit" value="Check In" onClick="">
-        <input type="text" id="checkInName" onkeyup="checkInList()" placeholder="Search for names.." title="Type in a name">
+        
+        <input id ="checkInBtn" type="submit" value="Check In" onclick="">
+
+        <form autocomplete="off">
+
+          <div class="autocomplete" style="width: max-content;">
+            <input style="width: 100%;" id="checkInName" type="text" name="myCountry" placeholder="Check In">
+          </div>
+
+        </form>
+        
       </div>
-      <!--List of guest on the list but not checked in -->
-      <ul id="names">
-      </ul>
+      
     </div>
     <!--End Check-In -->
 
@@ -117,14 +124,19 @@
         <h2 class="wide">Check Out</h2> 
       </div>
 
-      <!--Form for removing-->
-      <div class="checkOutForm">
-        <input id= "checkOutBtn" type="submit" value="Check Out" onClick="getList( )" >
-        <input type="text" id="checkOutName" onkeyup="insideList()" placeholder="Search for names.." title="Type in a name"> 
-      </div>
-      <!--List of Guests Inside-->
-      <ul id="namesInside">
-      </ul>
+      <div class="checkInForm">
+        
+        <input id ="checkOutBtn" type="submit" value="Check Out" onclick="">
+
+        <form autocomplete="off">
+
+          <div class="autocomplete" style="width: max-content;">
+            <input style="width: 100%;" id="checkOutName" type="text" name="myCountry" placeholder="Check Out">
+          </div>
+
+        </form>
+        
+      </div>   
 
     </div>
     <!--End Check Out-->
@@ -135,11 +147,16 @@
 
   <div class="content" style="max-width:2000px;margin-top:46px">
 
+    <!--List of Guests Inside-->
+    <h3>Currently Inside</h3>
+    <ul id="namesInside">
+    </ul>
     <!--File input to upload list-->
     <div class = "filePicker">
       <h3 style="color: azure;">Upload guest list:</h3>
       <input type="file" name="inputfile" id="inputfile"></input>
     </div>
+    
 
   </div>
   

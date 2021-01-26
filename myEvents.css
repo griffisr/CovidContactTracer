@@ -18,6 +18,7 @@
   cursor: pointer;
 }
 .addbutton:hover{color:#000!important;background-color:#ccc!important}
+
 /* List styles*/
 #events{
   width: 85%;
