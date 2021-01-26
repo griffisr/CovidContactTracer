@@ -21,7 +21,6 @@
     <link rel="stylesheet" type="text/css" href="eventStyle.css">
     <link rel="stylesheet" type="text/css" href="mainStyle.css">
 
-    
 </head>
 <body>
     <!-- Navbar -->
@@ -63,8 +62,7 @@
     <div class="row padding-32">
       <!-------------------------------------Left Side------------------------------>
       <div class="third" style= "min-width: 45%;">
-        <h3>Guests currently inside: </h3>
-        <h3 id="currentInside"></h3>
+        <h3>CDC Risk level goes here</h3>
         
       </div>
       <!--End Left Side -->
@@ -75,8 +73,13 @@
         
       <!-------------------------------------Right Side------------------------------>
       <div class="third" style="min-width: 45%;">
-        <h3>CDC Risk level goes here</h3>
-  
+        <div class="inside-wrapper">
+          <!--List of Guests Inside-->
+          <h3 id="currentInside"></h3>
+          <ul id="namesInside">
+          </ul>
+        </div>
+        
       </div>
       <!--End Right Side-->
     </div>
@@ -133,11 +136,8 @@
           <div class="autocomplete" style="width: max-content;">
             <input style="width: 100%;" id="checkOutName" type="text" name="myCountry" placeholder="Check Out">
           </div>
-
         </form>
-        
       </div>   
-
     </div>
     <!--End Check Out-->
   </div>
@@ -147,10 +147,7 @@
 
   <div class="content" style="max-width:2000px;margin-top:46px">
 
-    <!--List of Guests Inside-->
-    <h3>Currently Inside</h3>
-    <ul id="namesInside">
-    </ul>
+    
     <!--File input to upload list-->
     <div class = "filePicker">
       <h3 style="color: azure;">Upload guest list:</h3>

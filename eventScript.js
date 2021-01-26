@@ -282,7 +282,14 @@ function gotData(data){
     
   }
   //********************Add if statment to change risk level photo based on guestsInside var **********************
-  document.getElementById('currentInside').innerHTML = guestsInside;
+  if(guestsInside === 1)
+  {
+    document.getElementById('currentInside').innerHTML = "There is currently: " + guestsInside + " guest inside";
+  }
+  else{
+    document.getElementById('currentInside').innerHTML = "There are currently: " + guestsInside + " guests inside";
+  }
+  
 }
 
 function errData(err){
