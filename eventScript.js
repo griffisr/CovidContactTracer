@@ -248,7 +248,6 @@ function gotData(data){
   var scores = data.val();
   var keys = Object.keys(scores);
 
-  var ul = document.getElementById("names");
   var ulInside = document.getElementById("namesInside");
 
   for ( var i=0; i < keys.length; i++){
