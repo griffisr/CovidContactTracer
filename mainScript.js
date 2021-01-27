@@ -14,10 +14,19 @@ const firebaseConfig = {
 
 firebase.auth().onAuthStateChanged(function(user){
     if(user){
-        console.log("logged in")
+        console.log("logged in");
+        logOut.classList.remove('hide');
+        logIn.classList.add('hide');
+        newEventBtn.classList.remove('hide');
+    }
+    else{
+        logOut.classList.add('hide');
+        logIn.classList.remove('hide');
+        newEventBtn.classList.add('hide');
     }
 });
 
 function newEvent(){
     localStorage.setItem('eventName', "");
 }
+

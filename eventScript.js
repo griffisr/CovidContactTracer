@@ -11,6 +11,20 @@ const firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
   var database = firebase.database();
 
+  firebase.auth().onAuthStateChanged(function(user){
+    if(user){
+      console.log("logged in");
+      logOut.classList.remove('hide');
+      logIn.classList.add('hide');
+      newEventBtn.classList.remove('hide');
+  }
+  else{
+      logOut.classList.add('hide');
+      logIn.classList.remove('hide');
+      newEventBtn.classList.add('hide');
+  }
+});
+
 
 
 if(localStorage.getItem('eventName') === null || localStorage.getItem('eventName')==="" || localStorage.getItem('eventName')==="new"){
@@ -160,7 +174,6 @@ function setTextOut(name){
 }
 
 document.getElementById("checkOutBtn").onclick = function(){
-  var user = firebase.auth().currentUser;
   eventName = localStorage.getItem('eventName');
   var namel = document.getElementById("checkOutName").value;
   firebase.database().ref("users/" + localStorage.getItem('userUID') + "/events/" + eventName + "/guestList/"+namel).once('value', function(snapshot){

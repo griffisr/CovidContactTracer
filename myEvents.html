@@ -27,8 +27,9 @@ body {font-family: "Lato", sans-serif}
     <a class="bar-item button padding-large hide-medium hide-large right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
     <a href="index.html" class="bar-item button padding-large">HOME</a>
     <a href="myEvents.html" class="bar-item button padding-large hide-small">MY EVENTS</a>
-    <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;" class= "bar-item button padding-large">LOGIN</button>
-    <a href="" class="padding-large hover-red hide-small right">New Event</a>
+    <button id = "logIn" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" class= "bar-item button padding-large">LOGIN</button>
+    <button id= "logOut" style.display='block' style="width:auto;" class= "bar-item button padding-large hide">LOG OUT</button>
+    <a id="newEventBtn" href="" class="padding-large hover-red hide-small right">New Event</a>
 </div>
 </div>
 
@@ -157,5 +158,10 @@ window.onclick = function(event) {
   var ui = new firebaseui.auth.AuthUI(firebase.auth());
   // The start method will wait until the DOM is loaded.
   ui.start('#firebaseui-auth-container', uiConfig);
+  logOut.addEventListener('click', e => {
+  firebase.auth().signOut();
+  console.log("signed Out")
+  window.location.replace("index.html")
+  });
 </script>
 </html>

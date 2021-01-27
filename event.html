@@ -29,15 +29,16 @@
         <a class="bar-item button padding-large hide-medium hide-large right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
         <a href="index.html" class="bar-item button padding-large">HOME</a>
         <a href="myEvents.html" class="bar-item button padding-large hide-small">MY EVENTS</a>
-        <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;" class= "bar-item button padding-large">LOGIN</button>
-        <a href="" class="padding-large hover-red hide-small right">New Event</a>
+        <button id = "logIn" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" class= "bar-item button padding-large">LOGIN</button>
+        <button id= "logOut" style.display='block' style="width:auto;" class= "bar-item button padding-large hide">LOG OUT</button>
+        <a id="newEventBtn" href="" class="padding-large hover-red hide-small right">New Event</a>
         </div>
     </div>
 
     <!--Log In Box-->
     <div id="id01" class="modal">
   
-    <form class="modal-content animate" action="/action_page.php" method="post">
+    <form class="modal-content animate">
       <div class="imgcontainer">
         <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
         <img src="/CovidContactTracer/images/img_avatar2.png" alt="Avatar" class="avatar">
@@ -64,9 +65,9 @@
 <!-----------------------------------------Top Screen Content (Check In and Out)------------------------------------------------->
 
 <div class = "page-wrapper">
-  <br><br><br>
+  
 </div>
-<div class="container content center padding-64" style="background-color: #f5f3f3; opacity: 0.8; max-width:1600px;" id="band">
+<div class="container content center padding-64" style="background-color: #f5f3f3; opacity: 0.8; max-width:1600px; box-shadow: 5px 10px 8px #888888;" id="band">
   <div class="row padding-32">
     <!-------------------------------------Check In------------------------------>
     <div class="third" style= "min-width: 45%;">
@@ -89,6 +90,7 @@
         </form>
         
       </div>
+      <input type="file" name="inputfile" id="inputfile"></input>
       
     </div>
     <!--End Check-In -->
@@ -120,8 +122,11 @@
   </div>
 </div>
 
+<div class="content-spacer"></div>
+
+
 <!--Current Event Information-->
-<div class="container content center padding-64" style="background-color: #f5f3f3; opacity: 0.8; max-width:1600px;" id="band">
+<div class="container content center padding-64" style="background-color: #f5f3f3; opacity: 0.8; max-width:1600px; box-shadow: 5px 10px 8px #888888" id="band">
   <div class="row padding-32">
     <!-------------------------------------Left Side------------------------------>
     <div class="third" style= "min-width: 45%;">
@@ -141,6 +146,7 @@
         <h3 id="currentInside"></h3>
         <ul id="namesInside">
         </ul>
+        
       </div>
       
     </div>
@@ -151,23 +157,13 @@
 
 
 
-  <div class="content" style="max-width:2000px;margin-top:46px">
+
+  <div class="content-spacer"></div>
 
     
-    <!--File input to upload list-->
-    <div class = "filePicker">
-      <h3 style="color: azure;">Upload guest list:</h3>
-      <input type="file" name="inputfile" id="inputfile"></input>
-    </div>
-    
-
-  </div>
-  
 
 
-
-
-  <!-- Footer -->
+<!-- Footer -->
 <footer class="container padding-64 center opacity light-grey xlarge">
   <i class="fa fa-facebook-official hover-opacity"></i>
   <i class="fa fa-instagram hover-opacity"></i>
@@ -202,7 +198,7 @@
             </script>
 
 
-    <script type="text/javascript" src="eventScript.js"></script>
+    <script type="text/javascript" src="/CovidContactTracer/eventScript.js"></script>
 
 
 
@@ -231,5 +227,10 @@
   var ui = new firebaseui.auth.AuthUI(firebase.auth());
   // The start method will wait until the DOM is loaded.
   ui.start('#firebaseui-auth-container', uiConfig);
+  logOut.addEventListener('click', e => {
+  firebase.auth().signOut();
+  console.log("signed Out")
+  window.location.replace("index.html")
+  });
 </script>
 </html>

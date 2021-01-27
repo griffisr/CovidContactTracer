@@ -11,15 +11,24 @@ const firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
   var database = firebase.database();
 
-
-  //Gets data for currently logged in user
   firebase.auth().onAuthStateChanged(function(user){
     if(user){
-        eventName = localStorage.getItem('eventName');
-        var ref = firebase.database().ref("users/" + user.uid + "/events/")
-        ref.on('value', gotData, errData)
-    }
+      console.log("logged in");
+      logOut.classList.remove('hide');
+      logIn.classList.add('hide');
+      newEventBtn.classList.remove('hide');
+      eventName = localStorage.getItem('eventName');
+      var ref = firebase.database().ref("users/" + user.uid + "/events/")
+      ref.on('value', gotData, errData)
+  }
+  else{
+      logOut.classList.add('hide');
+      logIn.classList.remove('hide');
+      newEventBtn.classList.add('hide');
+  }
 });
+
+
 
 
 //------------------------------------------- UI List Funtions -------------------------------------
