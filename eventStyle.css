@@ -41,6 +41,10 @@ h1,h2,h3,h4,h5,h6, strong{
   align-items:flex-start;
   width: 100%;
 }
+.page-wrapper{
+  padding-top: 30px;
+}
+
 
 
 
@@ -48,6 +52,7 @@ h1,h2,h3,h4,h5,h6, strong{
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
+  padding-right: 100px;
 }
 
 

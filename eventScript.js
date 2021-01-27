@@ -14,16 +14,7 @@ const firebaseConfig = {
 
 
 if(localStorage.getItem('eventName') === null || localStorage.getItem('eventName')==="" || localStorage.getItem('eventName')==="new"){
-  eventName = prompt("Please enter a name for your event:", "My Event")
-  if(eventName === null || eventName === "")
-  {
-    alert("Please enter and event name!")
-  }
-  else
-  {
-    localStorage.setItem('eventName', eventName);
-  }
-
+  createEvent();
 }
 
 //-------------------- User Uploaded List -------------------------
@@ -64,10 +55,27 @@ function strToObject()
         TimeOut: "n/a",
       })
     }
-    
     localStorage.setItem('eventName', eventName);
     document.title = eventName;
+  }
+  
+}
 
+function createEvent(){
+  eventName = prompt("Please enter a name for your event:", "My Event")
+  if(eventName === null || eventName === "")
+  {
+    alert("Please enter an event name!")
+    createEvent();
+  }
+  else
+  {
+    localStorage.setItem('eventName', eventName);
+    document.title = eventName;
+    firebase.database().ref("users/" + localStorage.getItem('userUID') + "/events/" + eventName + "/guestList/").set({
+      Nobody: "empty",
+  
+    })
   }
   
 }
@@ -94,32 +102,39 @@ function setTextIn(name){
 document.getElementById("checkInBtn").onclick = function(){
   userUID = localStorage.getItem('userUID');
   eventName = localStorage.getItem('eventName');
+
+  //Grabs User Input for Check In
   var nameg = document.getElementById("checkInName").value;
+
+  //If no name is entered, tells user to enter a name 
   if(nameg==null){
     alert("Please Enter a guest name!")
   }
+
   firebase.database().ref("users/" + localStorage.getItem('userUID') + "/events/" + eventName + "/guestList/"+nameg).once('value', function(snapshot){
+
     //Creates a new guest if they aren't on the list uploaded by the user
-    if(snapshot.val() == "")
+    if(snapshot.val() === null)
     {
+      contactInfo = prompt(nameg + " is not currently on the list. Please enter either a phone number or email address for " + nameg + " to continue")
       firebase.database().ref("users/" + localStorage.getItem('userUID') + "/events/" + eventName + "/guestList/"+nameg).set({
         name: nameg,
-        Inside: "No",
-        TimeIn: "n/a",
+        Inside: "Yes",
+        TimeIn: getTime(),
         TimeOut: "n/a",
-      })
+        Contact: contactInfo,})
+    }
 
-      //Checking people back in that have already been inside
-      firebase.database().ref("users/" + localStorage.getItem('userUID') + "/events/" + eventName + "/guestList/"+nameg).once('value', function(snapshot){
-        if(snapshot.val().Inside != "Yes")
+    //Check In User Already on the list
+    if(snapshot.val() != null && snapshot.val().Inside === "No")
       {
         if(snapshot.val().TimeIn != "n/a" && snapshot.val().TimeOut !="n/a")
         {
           firebase.database().ref("users/" + localStorage.getItem('userUID') + "/events/" + eventName + "/guestList/"+nameg).update({
             Inside: "Yes",
             TimeBackIn: getTime(),
-            TimeBackOut: "n/a",
-          })
+            TimeBackOut: "n/a",})
+          
         }
         else
         {
@@ -131,29 +146,11 @@ document.getElementById("checkInBtn").onclick = function(){
       alerts(nameg, true)
       document.getElementById("checkInName").value="";
     })}
-
-    //Checks in user already on the guest list
-    if(snapshot.val().Inside != "Yes")
-      {
-        if(snapshot.val().TimeIn != "n/a" && snapshot.val().TimeOut !="n/a")
-        {
-          firebase.database().ref("users/" + localStorage.getItem('userUID') + "/events/" + eventName + "/guestList/"+nameg).update({
-            Inside: "Yes",
-            TimeBackIn: getTime(),
-            TimeBackOut: "n/a",
-          })
-        }
-        else
-        {
-          firebase.database().ref("users/" + localStorage.getItem('userUID') + "/events/" + eventName + "/guestList/"+nameg).update({
-          Inside: "Yes",
-          TimeIn: getTime(),})
-        }   
-      }     
-      alerts(nameg, true)
-    document.getElementById("checkInName").value="";
-    })
-    }
+  
+    
+        
+    
+    
 
 
 //------------------------- Check Out ------------------------------------------------------------
