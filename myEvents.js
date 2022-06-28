@@ -47,7 +47,7 @@ function gotData(data){
   var ul = document.getElementById("events");
 
   for ( var i=0; i < keys.length; i++){
-    var createDate = "Tues 10/12/2020"
+    var createDate = Date();
     var names = keys[i];
 
     var a =document.createElement("a");
