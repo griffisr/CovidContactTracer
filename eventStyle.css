@@ -55,7 +55,7 @@ h1,h2,h3,h4,h5,h6, strong{
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
-  padding-right: 100px;
+  padding: 10px;
 }
 
 
@@ -160,7 +160,7 @@ input[type=submit] {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 4px 2px;
+    margin: 40px 2px;
     cursor: pointer;
   }
   #checkOutBtn:hover{color:#000!important;background-color:#ccc!important}

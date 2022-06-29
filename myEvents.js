@@ -11,6 +11,7 @@ const firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
   var database = firebase.database();
 
+
   firebase.auth().onAuthStateChanged(function(user){
     if(user){
       console.log("logged in");
@@ -47,7 +48,7 @@ function gotData(data){
   var ul = document.getElementById("events");
 
   for ( var i=0; i < keys.length; i++){
-    var createDate = Date();
+    var createDate = "6/24/22";
     var names = keys[i];
 
     var a =document.createElement("a");

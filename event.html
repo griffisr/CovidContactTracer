@@ -31,7 +31,6 @@
         <a href="myEvents.html" class="bar-item button padding-large hide-small">MY EVENTS</a>
         <button id = "logIn" onclick="document.getElementById('id01').style.display='block'" style="width:auto;" class= "bar-item button padding-large">LOGIN</button>
         <button id= "logOut" style.display='block' style="width:auto;" class= "bar-item button padding-large hide">LOG OUT</button>
-        <a id="newEventBtn" href="" class="padding-large hover-red hide-small right">New Event</a>
         </div>
     </div>
 
@@ -60,87 +59,81 @@
 
   <!--Page Content-->
   
-    
-    
+
 <!-----------------------------------------Top Screen Content (Check In and Out)------------------------------------------------->
-
-<div class = "page-wrapper">
-  
-</div>
 <div class="container content center padding-64" style="background-color: #f5f3f3; opacity: 0.8; max-width:1600px; box-shadow: 5px 10px 8px #888888;" id="band">
-  <div class="row padding-32">
-    <!-------------------------------------Check In------------------------------>
-    <div class="third" style= "min-width: 45%;">
-      <!--Check In Label-->
-      <div class="checkInLabel">
-        <h2 class="wide">Check In</h2>
-      </div>
+  <div class="row">
+<!-------------------------------------Upload Guest List------------------------------>
+    <div class="half center">
 
-      <!--Form for adding-->
-      <div class="checkInForm">
-        
-        <input id ="checkInBtn" type="submit" value="Check In" onclick="">
-
-        <form autocomplete="off">
-
-          <div class="autocomplete" style="width: max-content;">
-            <input style="width: 100%;" id="checkInName" type="text" name="myCountry" placeholder="Check In">
-          </div>
-
-        </form>
-        
-      </div>
-      <input type="file" name="inputfile" id="inputfile"></input>
-      
+      <p class="wide">UPLOAD GUEST LIST HERE:</p> 
+      <input type="file" name="inputfile" id="inputfile"> </input>
     </div>
-    <!--End Check-In -->
+<!-------------------------------------End Guest List------------------------------>
+   
+    <div class="half center">
+<!-------------------------------------Check In------------------------------>
+       <!--Check In Label-->
+       <h2 class="wide">Check In</h2>
 
 
-    <!--Spacer for check in and check out-->
-    <div class="third"style= "max-width: 10%;"></div>
-      
-    <!-------------------------------------Check Out------------------------------>
-    <div class="third" style="min-width: 45%; align-items: center;">
+       <!--Form for adding-->
+       <form autocomplete="off">
+ 
+         <div class="autocomplete" style="width: max-content;">
+           <input style="width: 100%;" id="checkInName" type="text" name="myCountry" placeholder="Check In">
+         </div>
+       </form>
+ 
+       <input class = "center" id ="checkInBtn" type="submit" value="Check In" onclick="">
+       <!--End Check-In -->
+
+
+
+
+
+<!-------------------------------------Check Out------------------------------>
+
       <!--Check Out Label -->
-      <div class="checkOutLabel">
         <h2 class="wide">Check Out</h2> 
-      </div>
 
-      <div class="checkInForm">
-        
-        <input id ="checkOutBtn" type="submit" value="Check Out" onclick="">
 
         <form autocomplete="off">
 
           <div class="autocomplete" style="width: max-content;">
             <input style="width: 100%;" id="checkOutName" type="text" name="myCountry" placeholder="Check Out">
           </div>
-        </form>
-      </div>   
+        </form>  
+
+        <input class = "center" id ="checkOutBtn" type="submit" value="Check Out" onclick="">
+
     </div>
     <!--End Check Out-->
+
+
+    
   </div>
 </div>
 
 <div class="content-spacer"></div>
 
 
-<!--Current Event Information-->
+<!--Bottom Screen Content / Current Event Information-->
 <div class="container content center padding-64" style="background-color: #f5f3f3; opacity: 0.8; max-width:1600px; box-shadow: 5px 10px 8px #888888" id="band">
   <div class="row padding-32">
     <!-------------------------------------Left Side------------------------------>
-    <div class="third" style= "min-width: 45%;">
-      <h3>CDC Risk level goes here</h3>
-      
+    <div class="half center guestInfo">
+      <h3 class="INFOguestName">GUEST:</h3>
+      <p class="INFOcontactInfo">CONTACT INFO: </p>
+      <p class="INFOtimeIn">TIME IN: </p>
+
+
     </div>
     <!--End Left Side -->
 
-
-    <!--Spacer for middle-->
-    <div class="third"style= "max-width: 10%;"></div>
       
     <!-------------------------------------Right Side------------------------------>
-    <div class="third" style="min-width: 45%;">
+    <div class="half center">
       <div class="inside-wrapper">
         <!--List of Guests Inside-->
         <h3 id="currentInside"></h3>
@@ -164,7 +157,7 @@
 
 
 <!-- Footer -->
-<footer class="container padding-64 center opacity light-grey xlarge">
+<footer class="padding-64 center opacity light-grey xlarge" style="margin-left: 0; margin-right: 0;">
   <i class="fa fa-facebook-official hover-opacity"></i>
   <i class="fa fa-instagram hover-opacity"></i>
   <i class="fa fa-snapchat hover-opacity"></i>
@@ -174,33 +167,62 @@
   <p class="medium">Designed and created by: Riley Griffis</p>
 </footer>
 
+
+
+
 </body>
 
-        <script>
-          // Used to toggle the menu on small screens when clicking on the menu button
-          function myFunction() {
-            var x = document.getElementById("navDemo");
-            if (x.className.indexOf("show") == -1) {
-              x.className += " show";
-            } else {
-              x.className = x.className.replace(" show", "");
-            }
-          }
-            // Get the modal
-            var modal = document.getElementById('id01');
-            
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
-            </script>
+
+<script src=
+"https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity=
+"sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous">
+    </script>
+    <script src=
+"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity=
+"sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous">
+    </script>
+    <script src=
+"https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity=
+"sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous">
+    </script>
+
 
 
     <script type="text/javascript" src="/CovidContactTracer/eventScript.js"></script>
 
 
+
+    
+
+
+
+
+  <script>
+// Used to toggle the menu on small screens when clicking on the menu button
+    function myFunction() {
+      var x = document.getElementById("navDemo");
+      if (x.className.indexOf("show") == -1) {
+        x.className += " show";
+      } else {
+         x.className = x.className.replace(" show", "");
+      }
+      }
+      // Get the modal
+      var modal = document.getElementById('id01');
+        
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+  </script>
 
 <!-- *********************************Firebase User Auth********************************************************** -->
 <script src="https://www.gstatic.com/firebasejs/ui/4.7.1/firebase-ui-auth.js"></script>

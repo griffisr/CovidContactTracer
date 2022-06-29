@@ -171,6 +171,18 @@ document.getElementById("checkInBtn").onclick = function(){
 
 function setTextOut(name){
   document.getElementById("checkOutName").value = name;
+  $('.INFOguestName').html("GUEST: " +name);
+  firebase.database().ref("users/" + localStorage.getItem('userUID') + "/events/" + eventName + "/guestList/"+name).once('value', function(snapshot){
+
+    if(snapshot.val().Inside != "No")
+    {
+      $('.INFOcontactInfo').html("CONTACT INFO: " + snapshot.val().Contact);
+      $('.INFOtimeIn').html("TIME ENTERED: " +snapshot.val().TimeIn);
+    }
+    
+  })
+
+
 }
 
 document.getElementById("checkOutBtn").onclick = function(){
@@ -203,9 +215,11 @@ document.getElementById("checkOutBtn").onclick = function(){
 //---------------------- Alert once checked in and out ----------------------
   function alerts(name, Boolean){
     if(Boolean){
+      alert(name + " has been checked in!")
       console.log(name + " has been checked in!")
     }
     else{
+      alert(name + " has been checked out!")
       console.log(name + " has been checked out!")
     }
   }
@@ -286,6 +300,7 @@ function gotData(data){
       a.textContent = names;
       li.appendChild(a);
       ulInside.appendChild(li);
+      a.setAttribute('class', 'guestname')
       a.setAttribute('id', names);
       a.setAttribute('onclick', 'setTextOut(id)');
     }
